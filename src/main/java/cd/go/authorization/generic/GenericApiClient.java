@@ -59,7 +59,7 @@ public class GenericApiClient {
 
         return HttpUrl.parse(genericConfiguration.genericEndpoint())
                 .newBuilder()
-                .addPathSegments("v1")
+                .addPathSegments("oauth")
                 .addPathSegments("authorize")
                 .addQueryParameter("client_id", genericConfiguration.clientId())
                 .addQueryParameter("redirect_uri", callbackUrl)
@@ -80,7 +80,7 @@ public class GenericApiClient {
 
         final String accessTokenUrl = HttpUrl.parse(genericConfiguration.genericEndpoint())
                 .newBuilder()
-                .addPathSegments("v1")
+                .addPathSegments("oauth")
                 .addPathSegments("token")
                 .build().toString();
 
@@ -107,8 +107,7 @@ public class GenericApiClient {
 
         final String userProfileUrl = HttpUrl.parse(genericConfiguration.genericEndpoint())
                 .newBuilder()
-                .addPathSegments("v1")
-                .addPathSegments("userinfo")
+                .addPathSegments("me")
                 .toString();
 
         final RequestBody formBody = RequestBody.create(null, "");
@@ -116,7 +115,7 @@ public class GenericApiClient {
         final Request request = new Request.Builder()
                 .url(userProfileUrl)
                 .addHeader("Authorization", "Bearer " + tokenInfo.accessToken())
-                .post(formBody)
+                .get()
                 .build();
 
         return executeRequest(request, response -> GenericUser.fromJSON(response.body().string()));

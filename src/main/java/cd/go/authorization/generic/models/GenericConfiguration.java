@@ -28,6 +28,7 @@ import java.util.Map;
 import static cd.go.authorization.generic.utils.Util.GSON;
 
 public class GenericConfiguration implements Validatable {
+
     @Expose
     @SerializedName("GenericEndpoint")
     @ProfileField(key = "GenericEndpoint", required = true, secure = false)

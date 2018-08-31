@@ -42,6 +42,6 @@ public class GetPluginIconRequestExecutor implements RequestExecutor {
     }
 
     private String getIcon() {
-        return "/generic-logo.png";
+        return "/canzea.png";
     }
 }
