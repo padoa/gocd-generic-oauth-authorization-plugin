@@ -14,6 +14,17 @@ Installation documentation available [here](INSTALL.md).
 
 To build the jar, run `./gradlew clean test assemble`
 
+### with Docker
+
+```
+APP=generic-oauth-authorization-plugin
+docker build -t $APP .
+docker create --name $APP $APP
+docker cp $APP:/usr/src/gocd-$APP/build/libs/$APP-1.0.0-4.jar .
+docker rm $APP
+docker rmi $APP
+```
+
 ## License
 
 ```plain
